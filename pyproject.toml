@@ -2,8 +2,7 @@
 name = "gogma-reroll-tracker"
 version = "0.1.0"
 description = "Tracker for Monster Hunter Wilds Gogma Great Sword rerolls"
-authors = ["Your Name <you@example.com>"]
-readme = "README.md"
+authors = ["reginmaru@gmail.com"]
 packages = [{ include = "gogma_tracker", from = "src" }]
 
 [tool.poetry.dependencies]
