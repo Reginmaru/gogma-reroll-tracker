@@ -1,0 +1,87 @@
+{
+  "Raw": {
+    "current_count": 24,
+    "snapshots": [
+      {
+        "rolls": 12,
+        "skill1": "Doshaguma's Might",
+        "skill2": null,
+        "timestamp": "2026-03-14T14:02:25.899245"
+      },
+      {
+        "rolls": 17,
+        "skill1": "Bad Blood",
+        "skill2": null,
+        "timestamp": "2026-03-14T14:02:33.843345"
+      },
+      {
+        "rolls": 19,
+        "skill1": "Decimator",
+        "skill2": null,
+        "timestamp": "2026-03-14T14:03:05.699279"
+      },
+      {
+        "rolls": 19,
+        "skill1": "Decimator",
+        "skill2": null,
+        "timestamp": "2026-03-14T14:03:06.508667"
+      }
+    ],
+    "selected_skill1": "Scorcher",
+    "selected_skill2": null
+  },
+  "Fire": {
+    "current_count": 2,
+    "snapshots": [],
+    "selected_skill1": null,
+    "selected_skill2": null
+  },
+  "Water": {
+    "current_count": 1,
+    "snapshots": [],
+    "selected_skill1": null,
+    "selected_skill2": null
+  },
+  "Thunder": {
+    "current_count": 0,
+    "snapshots": [],
+    "selected_skill1": null,
+    "selected_skill2": null
+  },
+  "Ice": {
+    "current_count": 0,
+    "snapshots": [],
+    "selected_skill1": null,
+    "selected_skill2": null
+  },
+  "Dragon": {
+    "current_count": 0,
+    "snapshots": [],
+    "selected_skill1": null,
+    "selected_skill2": null
+  },
+  "Poison": {
+    "current_count": 0,
+    "snapshots": [],
+    "selected_skill1": null,
+    "selected_skill2": null
+  },
+  "Paralysis": {
+    "current_count": 0,
+    "snapshots": [],
+    "selected_skill1": null,
+    "selected_skill2": null
+  },
+  "Sleep": {
+    "current_count": 0,
+    "snapshots": [],
+    "selected_skill1": null,
+    "selected_skill2": null
+  },
+  "Blast": {
+    "current_count": 0,
+    "snapshots": [],
+    "selected_skill1": null,
+    "selected_skill2": null
+  }
+}

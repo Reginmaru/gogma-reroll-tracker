@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.venv/
+venv/
+ENV/
+.env
+*.egg-info/
+dist/
+build/
+*.egg
+gogma_tracker.json     # ← your save file — optional: keep if you want git, remove if private
