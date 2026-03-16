@@ -186,7 +186,7 @@ if weapons:
                     if path and os.path.exists(path):
                         st.image(path, width=64)
                     else:
-                        st.caption(w["element"][:4])
+                        st.caption(w["element"])
                 
                     
 
