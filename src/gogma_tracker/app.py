@@ -8,6 +8,12 @@ import pandas as pd
 import os
 from pathlib import Path
 import datetime
+
+# ────────────────────────────────────────────────
+# PAGE CONFIG (must be first!)
+# ────────────────────────────────────────────────
+st.set_page_config(page_title="Gogma Tracker", layout="wide")
+
 # ────────────────────────────────────────────────
 # CONFIG
 # ────────────────────────────────────────────────
@@ -113,14 +119,71 @@ skill2 = st.session_state.global_skill2
 # ────────────────────────────────────────────────
 
 # ── TOP CONTROLS ────────────────────────────────────────────────────────
-# ── TOP CONTROLS ────────────────────────────────────────────────────────
 t1, top_left, top_right = st.columns([5, 2.5, 2.5], vertical_alignment="top")
 
 with t1:
-    st.title("")
-    st.set_page_config(page_title="Gogma Tracker", layout="wide")
     st.title("🗡️ Gogma Artian Reroll Tracker")
     st.caption(f"max {MAX_ROLLS} rolls per weapon / type • session only")
+
+    # ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+    # NEW: FULL USER GUIDE + EXPLANATION
+    # ←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←←
+    with st.sidebar:
+        # with st.expander("📖 How Gogma Rerolls Work + How to Use This App", expanded=False):
+        st.markdown("""
+### How Gogma Artian Rerolls Actually Work (Quick Explainer)
+
+In Monster Hunter Wilds (TU4+), **Gogma Artian weapons** (upgraded from Rarity 8 Artian via Gogmazios parts like Tarred Devices) get random **Set Bonus Skill** + **Group Skill** combos when you **reroll** (Amend/Reset) those skills (Upgrading to gogma weapon counts as 1 reroll on element + weapon combo).
+
+**Key mechanic most people miss:**
+- The possible skill combos are **predetermined** in a hidden static table / sequence **per weapon type + element**.
+- There's **one shared counter / seed** that advances **every time you perform any roll** (initial upgrade or reroll) on **any** weapon of that type/element.
+- For every weapon + element combo - you need to go back to title screen without saving as you "record" you god rerolls. Then once you're happy with what you found run through all weapon + element combos rolls (aka at the end all your weapons have the desired skills) and only and only after you are happy with your weapons, save.
+
+**Example**:
+- You roll GS-Dragon → gets "Seregios's Tenacity + Lord's Soul"
+- You roll GS-Fire → gets "Gore Magala's Tyranny + Lord's Fury" (next in sequence)
+- You roll GS-Thunder → gets "Gogmapocalypse + Lord's Favor" (next again)
+- You return to title screen without saving
+- You go back and roll GS-Dragon and reroll once → You will roll the GS-Thunder "Gogmapocalypse + Lord's Favor" even though you skipped the GS-Fire.
+
+You can't "go back", but you **can** hunt for god rolls by advancing the counter strategically across multiple weapons.
+
+### How to Use This Tracker App
+
+1. **Add the combos you care about**  
+   Pick **Weapon** + **Element** → click **➕ Add**.  
+
+2. **Roll in-game & log here**  
+   - Reroll/upgrade in MH Wilds.  
+   - Click the **Roll #X** button on the matching card. (Roll number on this doesn't actually matter as you are saving the roll count on the table)
+   - App auto-resets skill pickers so you can change targets instantly.
+
+3. **Track progress**  
+   - Cards show current roll count (max 1000).  
+   - Right table shows **only saved hits** (sorted by weapon + roll number).  
+   - Spot path to take across your weapons!
+                        
+4. **Finding good rolls** (optional but recommended)  
+   Pick **Skill 1** (main Set Bonus) and/or **Skill 2** (Group Skill).  
+   → If either is selected when you click **Roll**, it auto-saves to the table.
+
+5. **If you delete the weapon + element container with the red buttons, the save rerolls on the table for that combo will be removed** 
+                      
+### Pro Tips from Heavy Rerollers
+- ** Alt + Tab **: quick switch between tabs to press Reroll.
+- **Fastest method**: Reroll in-game → Alt + Tab, instantly click button here while skills renerating, Alt + Tab → reroll again.  
+  The app "pre-rerolls" your selection while the game is loading/animating → saves ~1–2 seconds per roll.
+  Quick note - if you are rerolling this way you will have to "save" the good rolls after you have already literalled rerolled, this will not ruin the count as long as you keep to it.
+
+- **Session example**:  
+  I rolled 9 different GS element combos for ~50 minutes → hit **2 absolute god rolls** (perfect stats + dream skills) and **~12 strong usable ones**.  
+  Totally worth it.
+
+**Whatever order you are counting, stick to it**.
+
+Happy hunting & good luck on those god rolls — may your Tarred Devices be infinite 🗡️
+        """)
 
 with top_left:
     st.subheader("Add", divider="gray")
@@ -142,8 +205,6 @@ with top_left:
             st.warning(f"**{typ} – {elem}** is already being tracked.")
             st.toast("Duplicate weapon type + element combination", icon="⚠️")
         else:
-            st.warning("")
-            # Only add if it doesn't exist
             weapons.append({
                 "id": st.session_state.next_id,
                 "type": typ,
@@ -164,22 +225,19 @@ with top_right:
     st.session_state.global_skill2 = s2 if s2 != "—" else None
 
 # ── HORIZONTAL FLEX CARDS ───────────────────────────────────────────────
-# ── MAIN CONTENT: CARDS + TABLE SIDE BY SIDE ────────────────────────────────
 if weapons:
     st.subheader("Tracking", divider="gray")
 
-    # Create two equal-width columns
     left_col, right_col = st.columns(2, gap="medium")
 
     with left_col:
         st.markdown("**Instances**")
         
-        # You can keep 5 cards per row inside the left column
         card_cols = st.columns(5, gap="small")
         
         for i, w in enumerate(weapons):
             with card_cols[i % 5]:
-                with st.container(border=True, height=200):  # slightly taller to fit delete
+                with st.container(border=True, height=200):
                     st.markdown(f"**{w['label']}**")
                     
                     path = WEAPON_ICONS.get(w["element"])
@@ -187,16 +245,13 @@ if weapons:
                         st.image(path, width=64)
                     else:
                         st.caption(w["element"])
-                
-                    
 
                     # ── Roll button ───────────────────────────────────────
                     limit = w["current_count"] >= MAX_ROLLS
                     button_l, col_delete = st.columns([7, 3])
 
                     with col_delete:
-                        if st.button("🗑", key=f"del_{w['id']}", help="Remove this weapon", width="content", type = "primary"):
-                            # Remove this weapon from the list
+                        if st.button("🗑", key=f"del_{w['id']}", help="Remove this weapon", width="content", type="primary"):
                             st.session_state.weapons = [ww for ww in st.session_state.weapons if ww["id"] != w["id"]]
                             st.rerun()
 
@@ -225,7 +280,6 @@ if weapons:
                                 }
                                 w["snapshots"].append(snapshot)
                                 st.session_state.reset_skills = True
-                                # reset selected skills
                             st.rerun()
 
     with right_col:
