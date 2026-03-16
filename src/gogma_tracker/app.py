@@ -233,10 +233,10 @@ if weapons:
     with left_col:
         st.markdown("**Instances**")
         
-        card_cols = st.columns(5, gap="small")
+        card_cols = st.columns(4, gap="small")
         
         for i, w in enumerate(weapons):
-            with card_cols[i % 5]:
+            with card_cols[i % 4]:
                 with st.container(border=True, height=200):
                     st.markdown(f"**{w['label']}**")
                     
