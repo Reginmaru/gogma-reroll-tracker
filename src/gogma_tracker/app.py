@@ -17,13 +17,52 @@ base_path = BASE_DIR / "assets" / "icons"
 
 MAX_ROLLS = 1000
 
-SKILLS = [
-    "Doshaguma's Might", "Thunderous Roar", "Protective Veil", "Bad Blood",
-    "Scorcher", "Burst Boost", "Decimator", "Binding Counter", "Flawless Armor",
-    "War Cry", "Black Eclipse", "Hasten Recovery", "Protein Fiend", "Second Wind",
-    "Bubbly Dance", "Super Recovery", "Blossomdance Boon", "Razor's Edge",
-    "Azure Bolt", "Flamefete Boon", "Dark Arts/The Blackest Night", "Resonance",
-    "Dreamspell Boon", "Mutual Hostility", "Lumenhymn Boon",
+SKILLS =  [
+    "Doshaguma's Might",
+    "Rey Dau's Voltage",
+    "Uth Duna's Cover",
+    "Nu Udra's Mutiny",
+    "Rathalos's Flare",
+    "Ebony Odogaron's Power",
+    "Guardian Arkveld's Vitality",
+    "Jin Dahaad's Revolt",
+    "Gravios's Protection",
+    "Blangonga's Spirit",
+    "Gore Magala's Tyranny",
+    "Arkveld's Hunger",
+    "Xu Wu's Vigor",
+    "Fulgur Anjanath's Will",
+    "Mizutsune's Prowess",
+    "Zoh Shia's Pulse",
+    "Blossomdance Prayer",
+    "Seregios's Tenacity",
+    "Leviathan's Fury",
+    "Flamefete Prayer",
+    "Soul of the Dark Knight",
+    "Omega Resonance",
+    "Dreamspell Prayer",
+    "Gogmapocalypse",
+    "Lumenhymn Prayer"
+]
+
+group_skills = [
+    "Scaling Prowess",           # Activates Master Mounter
+    "Fortifying Pelt",           # Activates Fortify
+    "Flexible Leathercraft",     # Activates Hunter Gatherer
+    "Neopteron Alert",           # Activates Honey Hunter
+    "Lord's Favor",              # Activates Inspiration
+    "Guardian's Pulse",          # Activates Wylk Burst
+    "Neopteron Camouflage",      # Activates Fleetfoot
+    "Buttery Leathercraft",      # Activates Affinity Sliding
+    "Scale Layering",            # Activates Adrenaline
+    "Alluring Pelt",             # Activates Diversion
+    "Lord's Fury",               # Activates Resuscitate
+    "Guardian's Protection",     # Activates Ward of Wyveria
+    "Imparted Wisdom",           # Activates Forager's Luck
+    "Glory's Favor",             # Activates Luck
+    "Festival Spirit",           # Activates Carving Master
+    "Lord's Soul",               # Activates Guts (Tenacity)
+    "Master of the Fist"         # Activates Satsui no Hado
 ]
 
 WEAPON_TYPES = [
@@ -121,7 +160,7 @@ with top_right:
     st.subheader("Skills", divider="gray")
     s1 = st.selectbox("Skill 1", ["—"] + SKILLS, key="global_s1")
     st.session_state.global_skill1 = s1 if s1 != "—" else None
-    s2 = st.selectbox("Skill 2", ["—"] + SKILLS, key="global_s2")
+    s2 = st.selectbox("Skill 2", ["—"] + group_skills, key="global_s2")
     st.session_state.global_skill2 = s2 if s2 != "—" else None
 
 # ── HORIZONTAL FLEX CARDS ───────────────────────────────────────────────
