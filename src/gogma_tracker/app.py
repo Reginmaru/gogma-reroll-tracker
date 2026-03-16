@@ -217,7 +217,7 @@ if weapons:
                             if skill1 or skill2:
                                 now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                                 snapshot = {
-                                    "weapon_label": w["label"],
+                                    "weapon_label": w["label"] + " - " + w["element"],
                                     "rolls": w["current_count"],
                                     "S1": skill1,
                                     "S2": skill2,
